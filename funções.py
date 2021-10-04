@@ -60,7 +60,7 @@ class Drone:
         :param z: yaw
         """
 
-    def get_postion(self):
+    def get_position(self):
         """
         :return: posição do drone em relação ao ponto on ele começou como um dicionário
         """
@@ -76,26 +76,28 @@ class Drone:
         """
         Missão 4
         O drone deve ler o qr code que estiver na base e então armazenar os valores no dict_packages
-        Cada pacote 1, 2, 3, ... está relacionado com uma base pré-definida
+        Deve se marcar os pacotes conforme se checa cada base. Usando a função marcar_pacote()
         :return: True if there is a package there or False if not
         """
 
-    def take_package(self, drone):
+    def take_package(self):
         """
         Missão 4
         O drone deve abaixar e pegar o pacote da base com a garra e voltar a posição original
+        Vai precisar recolhever a superfície da área de pouso
         """
         # Sobe de novo
-        drone.move(
-            drone.get_postion()[0],
-            drone.get_postion()[1] + 1,
-            drone.get_postion()[2]
+        self.move(
+            self.get_postion()[0],
+            self.get_postion()[1] + 1,
+            self.get_postion()[2]
         )
 
-    def drop_package(self):
+    def drop_package(self, tipo_da_base):
         """
         Missão 4
         O drone vai descer até a plataforma e soltar o pacote e então voltar a posição original
         Deve também trocar o status do pacote para entregue
+        Se o drone for deixar um pacote na base costeira ele não pode fazer isso de forma que não possa pousar depois
         """
 
